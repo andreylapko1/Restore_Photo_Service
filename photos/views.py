@@ -17,7 +17,7 @@ class UploadPhotoView(View):
             form_obj = form.save(commit=False)
             form_obj.user = request.user
             form_obj.save()
-            return redirect('upload_photo')
+            return render(request, 'photos/photo_waiting.html')
         return render(request, 'photos/upload.html', {'form': form})
 
 
