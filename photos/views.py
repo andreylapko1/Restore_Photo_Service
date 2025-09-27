@@ -21,3 +21,8 @@ class UploadPhotoView(View):
         return render(request, 'photos/upload.html', {'form': form})
 
 
+def bootstrap_check(request):
+    if request.method == 'GET':
+        return render(request, 'photos/bootstrap.html')
+
+

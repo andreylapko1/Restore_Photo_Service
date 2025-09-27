@@ -5,17 +5,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 
-
-
-
-
-
-
 class RegisterUserView(View):
     def get(self, request):
         form = UserCreationForm()
         return render(request, 'users/register.html', {'form': form})
-
 
     def post(self, request):
         form = UserCreationForm(request.POST)
@@ -23,7 +16,8 @@ class RegisterUserView(View):
             user = form.save()
             login(request, user)
             return redirect('upload_photo')
-        return render(request, 'users/register.html', {'form': form})
+        return redirect('register')
+
 
 
 class LoginUserView(View):
@@ -37,4 +31,10 @@ class LoginUserView(View):
             user = form.get_user()
             login(request, user)
             return redirect('upload_photo')
-        return redirect('login')
+        else:
+            return redirect('login')
+
+
+
+
+
